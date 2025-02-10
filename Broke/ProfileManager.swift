@@ -186,3 +186,4 @@ struct Profile: Identifiable, Codable {
         self.icon = icon
     }
 }
+

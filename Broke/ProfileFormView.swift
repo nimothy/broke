@@ -51,6 +51,7 @@ struct ProfileFormView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 40, height: 40)
                             Text("Choose Icon")
+                                .foregroundColor(.blue)
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .foregroundColor(.secondary)
@@ -61,6 +62,7 @@ struct ProfileFormView: View {
                 Section(header: Text("App Configuration")) {
                     Button(action: { showAppSelection = true }) {
                         Text("Configure Blocked Apps")
+                            .foregroundColor(.blue)
                     }
                     
                     VStack(alignment: .leading, spacing: 8) {
@@ -93,8 +95,9 @@ struct ProfileFormView: View {
             }
             .navigationTitle(profile == nil ? "Add Profile" : "Edit Profile")
             .navigationBarItems(
-                leading: Button("Cancel", action: onDismiss),
+                leading: Button("Cancel", action: onDismiss).foregroundColor(.red),
                 trailing: Button("Save", action: handleSave)
+                    .foregroundColor(.blue)
                     .disabled(profileName.isEmpty)
             )
             .sheet(isPresented: $showSymbolsPicker) {
@@ -145,4 +148,13 @@ struct ProfileFormView: View {
         }
         onDismiss()
     }
+}
+
+#Preview {
+   let mockProfileManager = ProfileManager()
+
+   return ProfileFormView(
+       profileManager: mockProfileManager,
+       onDismiss: { /* do nothing in preview */ }
+   )
 }
